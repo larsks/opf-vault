@@ -1,0 +1,22 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: vault
+commonLabels:
+  app: vault
+
+resources:
+- cluster-scope/rbac.authorization.k8s.io/clusterrolebindings/opf-vault-server-binding/clusterrolebinding.yaml
+- cluster-scope/core/namespaces/vault/namespace.yaml
+- vault/core/serviceaccounts/opf-vault/serviceaccount.yaml
+- vault/core/configmaps/opf-vault-config/configmap.yaml
+- vault/core/services/opf-vault/service.yaml
+- vault/core/services/opf-vault-active/service.yaml
+- vault/core/services/opf-vault-internal/service.yaml
+- vault/core/services/opf-vault-standby/service.yaml
+- vault/core/services/opf-vault-ui/service.yaml
+- vault/core/pods/opf-server-test/pod.yaml
+- vault/rbac.authorization.k8s.io/roles/opf-vault-discovery-role/role.yaml
+- vault/rbac.authorization.k8s.io/rolebindings/opf-vault-discovery-rolebinding/rolebinding.yaml
+- vault/apps/statefulsets/opf-vault/statefulset.yaml
+- vault/policy/poddisruptionbudgets/opf-vault/poddisruptionbudget.yaml
+- vault/route.openshift.io/routes/opf-vault/route.yaml
