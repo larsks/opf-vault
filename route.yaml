@@ -1,0 +1,12 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+    name: opf-vault
+spec:
+    port:
+        targetPort: 8200
+    tls:
+        termination: edge
+    to:
+        kind: Service
+        name: opf-vault-active
